@@ -12,12 +12,12 @@ const ConfettiAnimation = () => {
 
   useEffect(() => {
     const colors = [
-      '#A08BA0', // malika-purple
-      '#E6B89C', // malika-peach  
-      '#D4A94C', // malika-gold
-      '#F6CFE1', // malika-pink
-      '#D2B8F2', // malika-lavender
-      '#F1C87C', // malika-light-gold
+      '#7495BA', // malika-blue
+      '#A7C7E7', // malika-sky-blue  
+      '#3C91C4', // malika-bright-blue
+      '#D6EAF8', // malika-light-blue
+      '#AECFE8', // malika-powder-blue
+      '#C3DFF3', // malika-soft-blue
     ];
 
     const newConfetti = Array.from({ length: 50 }, (_, i) => ({

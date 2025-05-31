@@ -63,7 +63,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Malika's custom colors
+				// Malika's custom colors with blue emphasis
 				'malika-purple': '#A08BA0',
 				'malika-peach': '#E6B89C',
 				'malika-gold': '#D4A94C',
@@ -79,6 +79,7 @@ export default {
 				'malika-light-pink': '#FADDEA',
 				'malika-lavender': '#D2B8F2',
 				'malika-light-yellow': '#F9F4BA',
+				// Blue tones (her favorites) - now primary
 				'malika-sky-blue': '#A7C7E7',
 				'malika-light-blue': '#D6EAF8',
 				'malika-powder-blue': '#AECFE8',

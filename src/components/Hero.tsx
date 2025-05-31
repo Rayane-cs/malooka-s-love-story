@@ -15,10 +15,10 @@ const Hero: React.FC<HeroProps> = ({ onCelebrate }) => {
           <Sparkles className="text-malika-gold w-8 h-8 opacity-60" />
         </div>
         <div className="absolute top-40 right-32 animate-sparkle" style={{ animationDelay: '1s' }}>
-          <Sparkles className="text-malika-lavender w-6 h-6 opacity-40" />
+          <Sparkles className="text-malika-sky-blue w-6 h-6 opacity-40" />
         </div>
         <div className="absolute bottom-32 left-32 animate-sparkle" style={{ animationDelay: '2s' }}>
-          <Sparkles className="text-malika-pink w-10 h-10 opacity-50" />
+          <Sparkles className="text-malika-bright-blue w-10 h-10 opacity-50" />
         </div>
         <div className="absolute bottom-20 right-20 animate-sparkle" style={{ animationDelay: '0.5s' }}>
           <Sparkles className="text-malika-peach w-7 h-7 opacity-70" />
@@ -33,35 +33,27 @@ const Hero: React.FC<HeroProps> = ({ onCelebrate }) => {
         
         {/* Name with special styling */}
         <div className="space-y-4">
-          <h2 className="font-dancing text-5xl md:text-7xl text-malika-burgundy animate-heartbeat">
+          <h2 className="font-dancing text-5xl md:text-7xl text-malika-ocean animate-heartbeat">
             Malooka
           </h2>
           <div className="flex items-center justify-center space-x-2">
-            <Heart className="text-malika-pink w-8 h-8 animate-heartbeat" />
-            <span className="font-dancing text-3xl md:text-4xl text-malika-purple">
-              🎂💖
+            <Heart className="text-malika-bright-blue w-8 h-8 animate-heartbeat" />
+            <span className="font-dancing text-3xl md:text-4xl text-malika-blue">
+              🎂💙
             </span>
-            <Heart className="text-malika-pink w-8 h-8 animate-heartbeat" />
+            <Heart className="text-malika-bright-blue w-8 h-8 animate-heartbeat" />
           </div>
         </div>
 
-        {/* Subtitle with nicknames */}
+        {/* Updated subtitle */}
         <div className="space-y-2">
           <p className="font-crimson text-xl md:text-2xl text-malika-gray italic">
-            My beautiful Malika, Malooka, Malokti
+            My beautiful Malika
           </p>
-          <p className="font-crimson text-lg md:text-xl text-malika-purple">
+          <p className="font-crimson text-lg md:text-xl text-malika-blue">
             My sweetie, my darling, my everything 💕
           </p>
         </div>
-
-        {/* Interactive celebration button */}
-        <button
-          onClick={onCelebrate}
-          className="mt-12 px-8 py-4 bg-gradient-to-r from-malika-pink to-malika-lavender text-malika-dark font-crimson text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse"
-        >
-          🎉 Celebrate with me! 🎉
-        </button>
       </div>
     </section>
   );

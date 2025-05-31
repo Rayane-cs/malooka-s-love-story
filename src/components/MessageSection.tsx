@@ -14,8 +14,8 @@ I promise to love you more each day, to support your dreams, to make you laugh w
 
 Happy birthday, my darling. Here's to many more years of love, laughter, and beautiful memories together.
 
-Forever yours,
-Your Love 💖`);
+With all my love,
+— Your Youbi 💙`);
 
   const handleSave = () => {
     setIsEditing(false);
@@ -34,9 +34,9 @@ Your Love 💖`);
           {/* Edit button */}
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className="absolute top-4 right-4 p-2 rounded-full bg-malika-pink/20 hover:bg-malika-pink/30 transition-colors"
+            className="absolute top-4 right-4 p-2 rounded-full bg-malika-sky-blue/20 hover:bg-malika-sky-blue/30 transition-colors"
           >
-            <Edit3 className="w-5 h-5 text-malika-burgundy" />
+            <Edit3 className="w-5 h-5 text-malika-ocean" />
           </button>
           
           {isEditing ? (
@@ -44,12 +44,12 @@ Your Love 💖`);
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full h-96 p-4 border border-malika-purple/30 rounded-lg font-crimson text-malika-dark bg-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-malika-purple"
+                className="w-full h-96 p-4 border border-malika-blue/30 rounded-lg font-crimson text-malika-dark bg-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-malika-blue"
                 placeholder="Write your special message here..."
               />
               <button
                 onClick={handleSave}
-                className="flex items-center space-x-2 px-4 py-2 bg-malika-purple text-white rounded-lg hover:bg-malika-burgundy transition-colors"
+                className="flex items-center space-x-2 px-4 py-2 bg-malika-blue text-white rounded-lg hover:bg-malika-ocean transition-colors"
               >
                 <Save className="w-4 h-4" />
                 <span>Save Message</span>
@@ -58,7 +58,7 @@ Your Love 💖`);
           ) : (
             <div className="space-y-4">
               <div className="text-center mb-6">
-                <Heart className="w-8 h-8 text-malika-pink mx-auto animate-heartbeat" />
+                <Heart className="w-8 h-8 text-malika-bright-blue mx-auto animate-heartbeat" />
               </div>
               <div className="font-crimson text-lg text-malika-dark leading-relaxed whitespace-pre-line">
                 {message}

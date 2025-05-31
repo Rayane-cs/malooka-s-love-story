@@ -61,15 +61,15 @@ const Index = () => {
       <Puzzle onSolved={triggerConfetti} />
       <SurpriseMessages onOpen={triggerConfetti} />
       
-      {/* Floating hearts */}
+      {/* Floating hearts with blue theme */}
       <div className="fixed top-1/4 left-4 animate-float">
-        <div className="text-malika-pink text-2xl animate-heartbeat">💖</div>
+        <div className="text-malika-bright-blue text-2xl animate-heartbeat">💙</div>
       </div>
       <div className="fixed top-3/4 right-8 animate-float" style={{ animationDelay: '1s' }}>
-        <div className="text-malika-lavender text-xl animate-heartbeat" style={{ animationDelay: '0.5s' }}>💜</div>
+        <div className="text-malika-sky-blue text-xl animate-heartbeat" style={{ animationDelay: '0.5s' }}>💙</div>
       </div>
       <div className="fixed top-1/2 right-4 animate-float" style={{ animationDelay: '2s' }}>
-        <div className="text-malika-peach text-lg animate-heartbeat" style={{ animationDelay: '1s' }}>🌸</div>
+        <div className="text-malika-blue text-lg animate-heartbeat" style={{ animationDelay: '1s' }}>🌸</div>
       </div>
     </div>
   );

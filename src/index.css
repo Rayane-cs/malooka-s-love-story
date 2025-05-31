@@ -14,35 +14,35 @@
     --popover: 248 246 240;
     --popover-foreground: 27 27 27;
 
-    --primary: 160 139 160;
+    --primary: 116 149 186;
     --primary-foreground: 248 246 240;
 
-    --secondary: 227 211 196;
+    --secondary: 214 234 248;
     --secondary-foreground: 27 27 27;
 
-    --muted: 227 211 196;
+    --muted: 195 223 243;
     --muted-foreground: 73 73 73;
 
-    --accent: 246 207 225;
+    --accent: 167 199 231;
     --accent-foreground: 27 27 27;
 
     --destructive: 126 30 30;
     --destructive-foreground: 248 246 240;
 
-    --border: 227 211 196;
-    --input: 227 211 196;
-    --ring: 160 139 160;
+    --border: 195 223 243;
+    --input: 195 223 243;
+    --ring: 116 149 186;
 
     --radius: 0.5rem;
 
     --sidebar-background: 248 246 240;
     --sidebar-foreground: 27 27 27;
-    --sidebar-primary: 160 139 160;
+    --sidebar-primary: 116 149 186;
     --sidebar-primary-foreground: 248 246 240;
-    --sidebar-accent: 246 207 225;
+    --sidebar-accent: 167 199 231;
     --sidebar-accent-foreground: 27 27 27;
-    --sidebar-border: 227 211 196;
-    --sidebar-ring: 160 139 160;
+    --sidebar-border: 195 223 243;
+    --sidebar-ring: 116 149 186;
   }
 }
 
@@ -53,7 +53,7 @@
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #F2EFE5 0%, #FADDEA 50%, #F4F1EE 100%);
+    background: linear-gradient(135deg, #F2EFE5 0%, #D6EAF8 50%, #C3DFF3 100%);
     min-height: 100vh;
     font-family: 'Crimson Text', serif;
   }
@@ -84,16 +84,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(160, 139, 160, 0.1);
+    background: rgba(116, 149, 186, 0.1);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(160, 139, 160, 0.5);
+    background: rgba(116, 149, 186, 0.5);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(160, 139, 160, 0.8);
+    background: rgba(116, 149, 186, 0.8);
   }
 }
 
@@ -107,7 +107,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #A08BA0, #E6B89C, #D4A94C);
+    background: linear-gradient(135deg, #7495BA, #A7C7E7, #3C91C4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -116,6 +116,6 @@
   .glass-effect {
     background: rgba(248, 246, 240, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(160, 139, 160, 0.2);
+    border: 1px solid rgba(116, 149, 186, 0.2);
   }
 }

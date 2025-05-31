@@ -44,14 +44,17 @@ const Gallery = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <Camera className="w-8 h-8 text-malika-purple" />
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-malika-dark">
-              Our Beautiful Memories
+            <Camera className="w-8 h-8 text-malika-accent-purple" />
+            <h2 className="font-playfair text-4xl md:text-5xl font-bold bg-gradient-to-r from-malika-gold to-malika-light-gold bg-clip-text text-transparent">
+              One Day, Our Memories Will Fill This Space
             </h2>
-            <Heart className="w-8 h-8 text-malika-pink animate-heartbeat" />
+            <Heart className="w-8 h-8 text-malika-bright-blue animate-heartbeat" />
           </div>
-          <p className="font-crimson text-xl text-malika-gray">
-            Every picture tells our love story 📸💕
+          <p className="font-crimson text-xl text-malika-gray mb-4">
+            Soon, this will be full of our moments... 📸💕
+          </p>
+          <p className="font-crimson text-lg text-malika-blue italic">
+            I can't wait to create beautiful memories with you, one smile, one adventure, one moment at a time. Here's where it begins.
           </p>
         </div>
         
@@ -59,7 +62,7 @@ const Gallery = () => {
           {mediaItems.map((item, index) => (
             <div
               key={index}
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg animate-fadeInUp"
+              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg animate-fadeInUp border border-malika-accent-purple/20"
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedMedia(index)}
             >
@@ -104,12 +107,6 @@ const Gallery = () => {
             </div>
           </div>
         )}
-        
-        <div className="text-center mt-12">
-          <p className="font-dancing text-2xl text-malika-purple italic">
-            "Every moment with you is a picture-perfect memory" 💖
-          </p>
-        </div>
       </div>
     </section>
   );

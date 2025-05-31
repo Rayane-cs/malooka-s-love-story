@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,11 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Malika's custom colors with blue emphasis
+				// Malika's custom colors with blue emphasis and new accents
 				'malika-purple': '#A08BA0',
 				'malika-peach': '#E6B89C',
 				'malika-gold': '#D4A94C',
 				'malika-light-gold': '#F1C87C',
+				'malika-accent-purple': '#D2B8F2',
 				'malika-dark': '#1B1B1B',
 				'malika-gray': '#494949',
 				'malika-green': '#627954',

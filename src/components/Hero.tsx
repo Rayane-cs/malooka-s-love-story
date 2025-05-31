@@ -21,13 +21,13 @@ const Hero: React.FC<HeroProps> = ({ onCelebrate }) => {
           <Sparkles className="text-malika-bright-blue w-10 h-10 opacity-50" />
         </div>
         <div className="absolute bottom-20 right-20 animate-sparkle" style={{ animationDelay: '0.5s' }}>
-          <Sparkles className="text-malika-peach w-7 h-7 opacity-70" />
+          <Sparkles className="text-malika-accent-purple w-7 h-7 opacity-70" />
         </div>
       </div>
 
       <div className="text-center space-y-8 max-w-4xl mx-auto animate-fadeInUp">
-        {/* Main title */}
-        <h1 className="font-playfair text-6xl md:text-8xl font-bold text-gradient leading-tight">
+        {/* Main title with gold gradient */}
+        <h1 className="font-playfair text-6xl md:text-8xl font-bold leading-tight bg-gradient-to-r from-malika-gold to-malika-light-gold bg-clip-text text-transparent">
           Happy Birthday
         </h1>
         

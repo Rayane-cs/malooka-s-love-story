@@ -6,6 +6,7 @@ import MessageSection from '../components/MessageSection';
 import Gallery from '../components/Gallery';
 import CountdownTimer from '../components/CountdownTimer';
 import Puzzle from '../components/Puzzle';
+import VoiceSurprise from '../components/VoiceSurprise';
 import ConfettiAnimation from '../components/ConfettiAnimation';
 import BackgroundMusic from '../components/BackgroundMusic';
 import SurpriseMessages from '../components/SurpriseMessages';
@@ -59,17 +60,18 @@ const Index = () => {
       <CountdownTimer />
       <Gallery />
       <Puzzle onSolved={triggerConfetti} />
+      <VoiceSurprise onSolved={triggerConfetti} />
       <SurpriseMessages onOpen={triggerConfetti} />
       
-      {/* Floating hearts with blue theme */}
+      {/* Floating hearts with blue theme and gold accents */}
       <div className="fixed top-1/4 left-4 animate-float">
         <div className="text-malika-bright-blue text-2xl animate-heartbeat">💙</div>
       </div>
       <div className="fixed top-3/4 right-8 animate-float" style={{ animationDelay: '1s' }}>
-        <div className="text-malika-sky-blue text-xl animate-heartbeat" style={{ animationDelay: '0.5s' }}>💙</div>
+        <div className="text-malika-gold text-xl animate-heartbeat" style={{ animationDelay: '0.5s' }}>✨</div>
       </div>
       <div className="fixed top-1/2 right-4 animate-float" style={{ animationDelay: '2s' }}>
-        <div className="text-malika-blue text-lg animate-heartbeat" style={{ animationDelay: '1s' }}>🌸</div>
+        <div className="text-malika-accent-purple text-lg animate-heartbeat" style={{ animationDelay: '1s' }}>🌸</div>
       </div>
     </div>
   );

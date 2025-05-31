@@ -10,8 +10,9 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
   const [answer, setAnswer] = useState('');
   const [solved, setSolved] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const [showHint, setShowHint] = useState(false);
 
-  const correctAnswer = 'youbi'; // Updated puzzle answer
+  const correctAnswers = ['youbi', 'YOUBI', 'Youbi']; // Accept any capitalization
   const puzzle = {
     question: "What do you call the person who loves you most?",
     hint: "It's the special name you gave me, the one that makes my heart warm every time you say it... 💙",
@@ -21,11 +22,15 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
   const checkAnswer = () => {
     setAttempts(attempts + 1);
     
-    if (answer.toLowerCase() === correctAnswer) {
+    if (correctAnswers.includes(answer.trim())) {
       setSolved(true);
       onSolved();
     } else {
-      // Give hints based on attempts
+      // Show hint after first attempt
+      if (attempts === 0) {
+        setShowHint(true);
+      }
+      // Give additional hints based on attempts
       if (attempts === 1) {
         alert("Close! Think about what you call me when you're being sweet... 💙");
       } else if (attempts === 2) {
@@ -38,7 +43,7 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
     return (
       <section className="py-20 px-4 bg-gradient-to-b from-malika-sky-blue/10 to-malika-light-blue/10">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="glass-effect p-8 rounded-lg shadow-xl">
+          <div className="glass-effect p-8 rounded-lg shadow-xl border border-malika-gold/30">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4 animate-heartbeat" />
             <h2 className="font-playfair text-3xl font-bold text-malika-dark mb-4">
               Perfect! You solved it! 🎉
@@ -50,7 +55,7 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
               <p className="font-crimson text-lg text-malika-gray">
                 You gave me this name, and it's become my favorite thing to hear. ✨
               </p>
-              <p className="font-dancing text-2xl text-malika-blue">
+              <p className="font-dancing text-2xl text-malika-bright-blue">
                 I love being your Youbi, 
                 I love when you say it with that smile, 
                 and I love YOU, my precious Malika! 💙👑
@@ -68,7 +73,7 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <PuzzleIcon className="w-8 h-8 text-malika-blue" />
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-malika-dark">
+            <h2 className="font-playfair text-4xl md:text-5xl font-bold bg-gradient-to-r from-malika-gold to-malika-light-gold bg-clip-text text-transparent">
               A Love Riddle
             </h2>
             <Heart className="w-8 h-8 text-malika-bright-blue animate-heartbeat" />
@@ -78,7 +83,7 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
           </p>
         </div>
         
-        <div className="glass-effect p-8 rounded-lg shadow-xl">
+        <div className="glass-effect p-8 rounded-lg shadow-xl border border-malika-accent-purple/20">
           <div className="space-y-6">
             <div className="text-center">
               <h3 className="font-dancing text-2xl text-malika-ocean mb-4">
@@ -87,18 +92,22 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
             </div>
             
             <div className="space-y-4">
-              <div className="bg-malika-light-blue/30 p-4 rounded-lg">
-                <p className="font-crimson text-malika-dark">
-                  <strong>Hint:</strong> {puzzle.hint}
-                </p>
-              </div>
-              
-              {attempts > 0 && (
-                <div className="bg-malika-soft-blue/30 p-4 rounded-lg">
-                  <p className="font-crimson text-malika-ocean">
-                    <strong>Additional Clue:</strong> {puzzle.clue}
-                  </p>
-                </div>
+              {showHint && (
+                <>
+                  <div className="bg-malika-light-blue/30 p-4 rounded-lg border border-malika-gold/20">
+                    <p className="font-crimson text-malika-dark">
+                      <strong>Hint:</strong> {puzzle.hint}
+                    </p>
+                  </div>
+                  
+                  {attempts > 1 && (
+                    <div className="bg-malika-soft-blue/30 p-4 rounded-lg border border-malika-accent-purple/20">
+                      <p className="font-crimson text-malika-ocean">
+                        <strong>Additional Clue:</strong> {puzzle.clue}
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
             
@@ -108,13 +117,13 @@ const Puzzle: React.FC<PuzzleProps> = ({ onSolved }) => {
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 placeholder="Type your answer here..."
-                className="w-full p-4 border border-malika-blue/30 rounded-lg font-crimson text-center text-lg bg-white/50 focus:outline-none focus:ring-2 focus:ring-malika-blue"
+                className="w-full p-4 border border-malika-blue/30 rounded-lg font-crimson text-center text-lg bg-white/50 focus:outline-none focus:ring-2 focus:ring-malika-gold"
                 onKeyPress={(e) => e.key === 'Enter' && checkAnswer()}
               />
               
               <button
                 onClick={checkAnswer}
-                className="w-full py-3 bg-gradient-to-r from-malika-blue to-malika-bright-blue text-white font-crimson text-lg rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="w-full py-3 bg-gradient-to-r from-malika-blue to-malika-bright-blue text-white font-crimson text-lg rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 hover:from-malika-gold hover:to-malika-light-gold"
               >
                 Check Answer ✨
               </button>

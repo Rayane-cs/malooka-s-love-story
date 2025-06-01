@@ -76,7 +76,7 @@ const Timeline = () => {
       return observer;
     });
 
-    // Timeline animation observer for mobile
+    // Enhanced timeline animation observer for mobile
     const timelineObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -86,14 +86,17 @@ const Timeline = () => {
             const elementTop = rect.top;
             const elementHeight = rect.height;
             
-            // Calculate how much of the timeline is visible
-            const visibleHeight = Math.min(windowHeight - elementTop, elementHeight);
-            const progress = Math.max(0, Math.min(1, visibleHeight / elementHeight));
+            // Calculate progress based on scroll position
+            let progress = 0;
+            if (elementTop < windowHeight) {
+              const visibleHeight = Math.min(windowHeight - Math.max(elementTop, 0), elementHeight);
+              progress = Math.max(0, Math.min(1, visibleHeight / elementHeight));
+            }
             setTimelineProgress(progress);
           }
         });
       },
-      { threshold: 0 }
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] }
     );
 
     if (timelineRef.current) {
@@ -108,22 +111,22 @@ const Timeline = () => {
 
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-transparent to-malika-light-blue/30">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="font-playfair text-4xl md:text-5xl font-bold text-center mb-16 text-malika-dark">
           Our Beautiful Journey
         </h2>
         
         <div ref={timelineRef} className="relative">
-          {/* Desktop Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue hidden md:block"></div>
+          {/* Desktop Timeline line - perfectly centered */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue hidden md:block z-0"></div>
           
-          {/* Mobile Timeline line with animation */}
-          <div className="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-malika-blue/20 to-malika-bright-blue/20 md:hidden"></div>
+          {/* Mobile Timeline - centered and animated */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 h-full bg-gradient-to-b from-malika-blue/20 to-malika-bright-blue/20 md:hidden z-0"></div>
           <div 
-            className="absolute left-6 top-0 w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue shadow-lg md:hidden transition-all duration-1000 ease-out"
+            className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue md:hidden transition-all duration-1000 ease-out z-0"
             style={{ 
               height: `${timelineProgress * 100}%`,
-              boxShadow: '0 0 8px rgba(60, 145, 196, 0.5)'
+              boxShadow: '0 0 12px rgba(60, 145, 196, 0.6), 0 0 24px rgba(60, 145, 196, 0.3)'
             }}
           ></div>
           
@@ -136,55 +139,117 @@ const Timeline = () => {
               <div 
                 key={index} 
                 ref={el => eventRefs.current[index] = el}
-                className={`relative flex flex-col md:flex-row items-center mb-8 md:mb-12 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                className="relative mb-12 md:mb-16"
               >
-                {/* Content */}
-                <div className={`w-full md:w-5/12 ${isEven ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'} mb-4 md:mb-0 ${index === 0 ? 'ml-16 md:ml-0' : 'ml-16 md:ml-0'}`}>
-                  <div 
-                    className={`glass-effect p-4 md:p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
-                      isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
-                    }`}
-                    style={{ 
-                      animationDelay: `${index * 0.2}s`,
-                      transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
-                    }}
-                  >
-                    <div className="font-dancing text-base md:text-lg text-malika-blue mb-2 transition-colors duration-300">
-                      {event.date}
+                {/* Desktop Layout */}
+                <div className="hidden md:flex items-center">
+                  {/* Left card (even indexes) */}
+                  {isEven && (
+                    <div className="w-5/12 text-right pr-8">
+                      <div 
+                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                        }`}
+                        style={{ 
+                          transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                        }}
+                      >
+                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                          {event.date}
+                        </div>
+                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                          {event.title}
+                        </h3>
+                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-playfair text-lg md:text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
-                      {event.title}
-                    </h3>
-                    <p className="font-playfair text-sm md:text-base text-malika-gray transition-colors duration-300 leading-relaxed">
-                      {event.description}
-                    </p>
+                  )}
+                  
+                  {/* Center Icon - perfectly positioned */}
+                  <div className="relative w-2/12 flex justify-center z-10">
+                    <div 
+                      className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
+                        isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
+                      }`}
+                      style={{ 
+                        background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
+                        transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                      }}
+                    >
+                      <IconComponent className="w-7 h-7 text-white drop-shadow-sm" />
+                    </div>
+                  </div>
+                  
+                  {/* Right card (odd indexes) */}
+                  {!isEven && (
+                    <div className="w-5/12 text-left pl-8">
+                      <div 
+                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                        }`}
+                        style={{ 
+                          transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                        }}
+                      >
+                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                          {event.date}
+                        </div>
+                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                          {event.title}
+                        </h3>
+                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Empty space for alternating layout */}
+                  {isEven && <div className="w-5/12"></div>}
+                  {!isEven && <div className="w-5/12"></div>}
+                </div>
+                
+                {/* Mobile Layout */}
+                <div className="md:hidden relative">
+                  {/* Center Icon - perfectly positioned on mobile timeline */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-0 z-10">
+                    <div 
+                      className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
+                        isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
+                      }`}
+                      style={{ 
+                        background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
+                        transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                      }}
+                    >
+                      <IconComponent className="w-6 h-6 text-white drop-shadow-sm" />
+                    </div>
+                  </div>
+                  
+                  {/* Content card with proper spacing */}
+                  <div className="pl-16 pt-2">
+                    <div 
+                      className={`glass-effect p-4 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                      }`}
+                      style={{ 
+                        transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                      }}
+                    >
+                      <div className="font-dancing text-base text-malika-blue mb-2 transition-colors duration-300">
+                        {event.date}
+                      </div>
+                      <h3 className="font-playfair text-lg font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                        {event.title}
+                      </h3>
+                      <p className="font-playfair text-sm text-malika-gray transition-colors duration-300 leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Icon with perfect centering */}
-                <div 
-                  className="absolute w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-300 z-10 animate-pulse-gentle"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
-                    left: '1.5rem',
-                    transform: 'translateX(-50%)'
-                  }}
-                >
-                  <IconComponent className={`w-6 h-6 text-white drop-shadow-sm`} />
-                </div>
-                
-                {/* Desktop icon positioning */}
-                <div 
-                  className="hidden md:block absolute w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-300 z-10 animate-pulse-gentle left-1/2 transform -translate-x-1/2"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
-                  }}
-                >
-                  <IconComponent className={`w-6 h-6 text-white drop-shadow-sm`} />
-                </div>
-                
-                {/* Empty space for the other side - only on desktop */}
-                <div className="hidden md:block md:w-5/12"></div>
               </div>
             );
           })}

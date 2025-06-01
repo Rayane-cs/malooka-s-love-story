@@ -5,7 +5,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 const BackgroundMusic = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [originalVolume] = useState(0.2); // 20% volume
+  const [originalVolume] = useState(0.25); // 25% volume
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -83,7 +83,8 @@ const BackgroundMusic = () => {
       <audio
         ref={audioRef}
         preload="metadata"
-        src="https://www.youtube.com/watch?v=K11_8DcfMHE"
+        src="/love-story-slowed.mp3"
+        style={{ display: 'none' }}
       />
       
       {/* Music control button with purple hover */}

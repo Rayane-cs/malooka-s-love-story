@@ -9,21 +9,31 @@ interface VoiceSurpriseProps {
 const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
   const [solved, setSolved] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [draggedItems, setDraggedItems] = useState<string[]>([]);
+  const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
+  const [availableLetters, setAvailableLetters] = useState<{ letter: string; used: boolean }[]>([
+    { letter: 'M', used: false },
+    { letter: 'A', used: false },
+    { letter: 'L', used: false },
+    { letter: 'I', used: false },
+    { letter: 'K', used: false },
+    { letter: 'A', used: false }
+  ]);
   const audioRef = useRef<HTMLAudioElement>(null);
   
   const targetWord = "MALIKA";
-  const shuffledLetters = ["M", "A", "L", "I", "K", "A"].sort(() => Math.random() - 0.5);
-
-  const handleDrop = (e: React.DragEvent, position: number) => {
-    e.preventDefault();
-    const letter = e.dataTransfer.getData("text");
-    const newDraggedItems = [...draggedItems];
-    newDraggedItems[position] = letter;
-    setDraggedItems(newDraggedItems);
+  
+  const handleLetterTap = (index: number) => {
+    if (availableLetters[index].used || selectedLetters.length >= 6) return;
+    
+    const newSelectedLetters = [...selectedLetters, availableLetters[index].letter];
+    const newAvailableLetters = [...availableLetters];
+    newAvailableLetters[index].used = true;
+    
+    setSelectedLetters(newSelectedLetters);
+    setAvailableLetters(newAvailableLetters);
     
     // Check if puzzle is solved
-    if (newDraggedItems.join("") === targetWord) {
+    if (newSelectedLetters.join("") === targetWord) {
       setSolved(true);
       onSolved();
       // Lower background music volume
@@ -33,12 +43,9 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
     }
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const handleDragStart = (e: React.DragEvent, letter: string) => {
-    e.dataTransfer.setData("text", letter);
+  const resetPuzzle = () => {
+    setSelectedLetters([]);
+    setAvailableLetters(prev => prev.map(item => ({ ...item, used: false })));
   };
 
   const playVoiceRecording = async () => {
@@ -88,47 +95,57 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
               <Heart className="w-8 h-8 text-malika-accent-purple animate-heartbeat" />
             </div>
             <p className="font-crimson text-xl text-malika-gray">
-              Arrange the letters to spell your beautiful name 💫
+              Tap the letters to spell your beautiful name 💫
             </p>
           </div>
           
           <div className="glass-effect p-8 rounded-lg shadow-xl border border-malika-gold/30">
             <div className="space-y-8">
-              {/* Drop zones */}
+              {/* Selected letters display */}
               <div className="flex justify-center space-x-2">
                 {Array.from({ length: 6 }).map((_, index) => (
                   <div
                     key={index}
-                    className="w-12 h-12 border-2 border-dashed border-malika-gold rounded-lg flex items-center justify-center bg-malika-light-blue/20"
-                    onDrop={(e) => handleDrop(e, index)}
-                    onDragOver={handleDragOver}
+                    className="w-12 h-12 border-2 border-malika-gold rounded-lg flex items-center justify-center bg-malika-light-blue/20"
                   >
                     <span className="font-dancing text-2xl text-malika-bright-blue font-bold">
-                      {draggedItems[index] || ""}
+                      {selectedLetters[index] || ""}
                     </span>
                   </div>
                 ))}
               </div>
               
-              {/* Draggable letters */}
-              <div className="flex justify-center space-x-3">
-                {shuffledLetters.map((letter, index) => (
-                  <div
-                    key={`${letter}-${index}`}
-                    className="w-10 h-10 bg-gradient-to-r from-malika-accent-purple to-malika-lavender rounded-lg flex items-center justify-center cursor-move hover:scale-110 transition-transform shadow-lg"
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, letter)}
+              {/* Tappable letters */}
+              <div className="grid grid-cols-3 gap-3 max-w-xs mx-auto">
+                {availableLetters.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleLetterTap(index)}
+                    disabled={item.used}
+                    className={`w-16 h-16 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg font-dancing text-2xl font-bold ${
+                      item.used 
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50' 
+                        : 'bg-gradient-to-r from-malika-accent-purple to-malika-lavender text-white hover:scale-110 active:scale-95'
+                    }`}
                   >
-                    <span className="font-dancing text-xl text-white font-bold">
-                      {letter}
-                    </span>
-                  </div>
+                    {item.letter}
+                  </button>
                 ))}
               </div>
               
-              <p className="text-center font-crimson text-malika-gray">
-                Drag and drop the letters into the boxes above ✨
-              </p>
+              <div className="text-center space-y-2">
+                <p className="font-crimson text-malika-gray">
+                  Tap the letters in order to spell your name ✨
+                </p>
+                {selectedLetters.length > 0 && (
+                  <button
+                    onClick={resetPuzzle}
+                    className="text-malika-blue hover:text-malika-bright-blue font-crimson underline text-sm"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

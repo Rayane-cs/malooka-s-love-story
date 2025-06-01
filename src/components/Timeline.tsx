@@ -88,7 +88,7 @@ const Timeline = () => {
         
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue hidden md:block"></div>
           
           {timelineEvents.map((event, index) => {
             const IconComponent = event.icon;
@@ -99,26 +99,26 @@ const Timeline = () => {
               <div 
                 key={index} 
                 ref={el => eventRefs.current[index] = el}
-                className={`relative flex items-center mb-12 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+                className={`relative flex flex-col md:flex-row items-center mb-8 md:mb-12 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Content */}
-                <div className={`w-5/12 ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div className={`w-full md:w-5/12 ${isEven ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'} mb-4 md:mb-0`}>
                   <div 
-                    className={`glass-effect p-6 rounded-lg shadow-lg cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-malika-gold/20 group ${
-                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    className={`glass-effect p-4 md:p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                      isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                     }`}
                     style={{ 
                       animationDelay: `${index * 0.2}s`,
                       transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                     }}
                   >
-                    <div className="font-dancing text-lg text-malika-blue mb-2 group-hover:text-malika-gold transition-colors duration-300">
+                    <div className="font-dancing text-base md:text-lg text-malika-blue mb-2 transition-colors duration-300">
                       {event.date}
                     </div>
-                    <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 group-hover:text-malika-bright-blue transition-colors duration-300">
+                    <h3 className="font-playfair text-lg md:text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
                       {event.title}
                     </h3>
-                    <p className="font-crimson text-malika-gray group-hover:text-malika-ocean transition-colors duration-300">
+                    <p className="font-playfair text-sm md:text-base text-malika-gray transition-colors duration-300 leading-relaxed">
                       {event.description}
                     </p>
                   </div>
@@ -126,7 +126,7 @@ const Timeline = () => {
                 
                 {/* Icon with gradient background */}
                 <div 
-                  className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-300 hover:scale-110 z-10"
+                  className="relative w-12 h-12 md:absolute md:left-1/2 md:transform md:-translate-x-1/2 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-300 z-10 animate-pulse-gentle mb-4 md:mb-0"
                   style={{ 
                     background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
                   }}
@@ -134,8 +134,8 @@ const Timeline = () => {
                   <IconComponent className={`w-6 h-6 text-white drop-shadow-sm`} />
                 </div>
                 
-                {/* Empty space for the other side */}
-                <div className="w-5/12"></div>
+                {/* Empty space for the other side - only on desktop */}
+                <div className="hidden md:block md:w-5/12"></div>
               </div>
             );
           })}

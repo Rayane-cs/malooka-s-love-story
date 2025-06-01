@@ -19,7 +19,6 @@ With all my love,
 
   const handleSave = () => {
     setIsEditing(false);
-    // Here you could implement actual saving to a backend
     console.log('Message saved:', message);
   };
 
@@ -30,52 +29,58 @@ With all my love,
           A Special Message
         </h2>
         
-        <div className="glass-effect p-8 rounded-lg shadow-xl relative border border-malika-accent-purple/20">
-          {/* Edit button with purple hover */}
-          <button
-            onClick={() => setIsEditing(!isEditing)}
-            className="absolute top-4 right-4 p-2 rounded-full bg-malika-sky-blue/20 hover:bg-malika-accent-purple/30 transition-colors"
-          >
-            <Edit3 className="w-5 h-5 text-malika-ocean" />
-          </button>
+        <div className="relative">
+          {/* Soft glowing background effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-malika-sky-blue/20 via-malika-light-blue/30 to-malika-powder-blue/20 rounded-2xl blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/40 to-white/60 rounded-2xl"></div>
           
-          {isEditing ? (
-            <div className="space-y-4">
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full h-96 p-4 border border-malika-blue/30 rounded-lg font-crimson text-malika-dark bg-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-malika-gold"
-                placeholder="Write your special message here..."
-              />
-              <button
-                onClick={handleSave}
-                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-malika-gold to-malika-light-gold text-white rounded-lg hover:shadow-lg transition-all duration-300"
-              >
-                <Save className="w-4 h-4" />
-                <span>Save Message</span>
-              </button>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="text-center mb-6">
-                <Heart className="w-8 h-8 text-malika-bright-blue mx-auto animate-heartbeat" />
+          <div className="relative glass-effect p-8 md:p-12 rounded-2xl shadow-2xl border border-malika-accent-purple/30 backdrop-blur-sm">
+            {/* Edit button */}
+            <button
+              onClick={() => setIsEditing(!isEditing)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-malika-sky-blue/20 hover:bg-malika-accent-purple/30 transition-colors"
+            >
+              <Edit3 className="w-5 h-5 text-malika-ocean" />
+            </button>
+            
+            {isEditing ? (
+              <div className="space-y-4">
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full h-96 p-4 border border-malika-blue/30 rounded-lg font-playfair text-malika-dark bg-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-malika-gold text-lg leading-relaxed"
+                  placeholder="Write your special message here..."
+                />
+                <button
+                  onClick={handleSave}
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-malika-gold to-malika-light-gold text-white rounded-lg hover:shadow-lg transition-all duration-300"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>Save Message</span>
+                </button>
               </div>
-              <div className="font-playfair text-lg text-malika-dark leading-relaxed">
-                {message.split('\n').map((line, index) => {
-                  if (line.includes('— Your Youbi')) {
-                    return (
-                      <div key={index} className="text-right mt-6">
-                        <span className="font-dancing text-xl text-malika-bright-blue">
-                          {line}
-                        </span>
-                      </div>
-                    );
-                  }
-                  return line ? <p key={index} className="mb-4">{line}</p> : <br key={index} />;
-                })}
+            ) : (
+              <div className="space-y-4">
+                <div className="text-center mb-6">
+                  <Heart className="w-8 h-8 text-malika-bright-blue mx-auto animate-heartbeat" />
+                </div>
+                <div className="font-playfair text-lg md:text-xl text-malika-dark leading-relaxed">
+                  {message.split('\n').map((line, index) => {
+                    if (line.includes('— Your Youbi')) {
+                      return (
+                        <div key={index} className="text-right mt-8">
+                          <span className="font-dancing text-2xl md:text-3xl" style={{ color: '#3C91C4' }}>
+                            {line}
+                          </span>
+                        </div>
+                      );
+                    }
+                    return line ? <p key={index} className="mb-6">{line}</p> : <br key={index} />;
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </section>

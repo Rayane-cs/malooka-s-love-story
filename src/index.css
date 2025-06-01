@@ -55,7 +55,7 @@
     @apply bg-background text-foreground;
     background: linear-gradient(135deg, #F2EFE5 0%, #D6EAF8 50%, #C3DFF3 100%);
     min-height: 100vh;
-    font-family: 'Crimson Text', serif;
+    font-family: 'Playfair Display', serif;
   }
 
   /* Disable right-click context menu */
@@ -119,11 +119,53 @@
     border: 1px solid rgba(116, 149, 186, 0.2);
   }
 
-  /* Mobile-specific hover effects using touch */
-  @media (hover: none) and (pointer: coarse) {
-    .timeline-card:active {
+  /* Timeline card hover effects */
+  .timeline-card {
+    transition: all 0.3s ease;
+  }
+
+  /* Desktop hover effects */
+  @media (hover: hover) and (pointer: fine) {
+    .timeline-card:hover {
       transform: scale(1.05);
       box-shadow: 0 20px 25px -5px rgba(212, 169, 76, 0.2), 0 10px 10px -5px rgba(212, 169, 76, 0.1);
+      background: rgba(248, 246, 240, 0.95);
     }
+    
+    .timeline-card:hover .font-dancing {
+      color: #D4A94C;
+    }
+    
+    .timeline-card:hover h3 {
+      color: #3C91C4;
+    }
+    
+    .timeline-card:hover p {
+      color: #2E6EA6;
+    }
+  }
+
+  /* Mobile touch effects */
+  @media (hover: none) and (pointer: coarse) {
+    .timeline-card:active {
+      transform: scale(1.03);
+      box-shadow: 0 15px 20px -5px rgba(212, 169, 76, 0.15), 0 8px 8px -5px rgba(212, 169, 76, 0.08);
+    }
+  }
+
+  /* Custom animations */
+  @keyframes pulse-gentle {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(60, 145, 196, 0.4);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(60, 145, 196, 0);
+    }
+  }
+
+  .animate-pulse-gentle {
+    animation: pulse-gentle 3s ease-in-out infinite;
   }
 }

@@ -19,37 +19,12 @@
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-<<<<<<< HEAD
-    <!-- Background Music -->
-  <audio id="bg-music" autoplay loop>
-    <source src="assets/audio/background-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    // Set music volume to 20%
-    const bgMusic = document.getElementById("bg-music");
-    bgMusic.volume = 0.2;
-
-    // Optional: play music on first interaction if autoplay is blocked
-    document.addEventListener('click', function playMusicOnce() {
-      bgMusic.play().catch(() => {}); // silently ignore errors
-      document.removeEventListener('click', playMusicOnce);
-    });
-  </script>
-
-
-=======
+    <!--  kground Music -->
     <audio id="bg-music" autoplay loop>
-      <source src="audio/background-music.mp3" type="audio/mpeg">
+      <source src="assets/audio/background-music.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
-      
-    <script>
-      // Optional: reduce volume a bit
-      const bgMusic = document.getElementById("bg-music");
-      bgMusic.volume = 0.2; // 20% volume
-    </script>
->>>>>>> 98f1cf0a440b09a8e8f1be873a6487809acbb3d0
+    
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>

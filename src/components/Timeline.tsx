@@ -146,7 +146,7 @@ const Timeline = () => {
                   {isEven && (
                     <div className="w-5/12 text-right pr-8">
                       <div 
-                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl timeline-card ${
                           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                         }`}
                         style={{ 
@@ -167,7 +167,7 @@ const Timeline = () => {
                   )}
                   
                   {/* Center Icon - perfectly positioned */}
-                  <div className="relative w-2/12 flex justify-center z-10">
+                  <div className="relative w-[8.333%] flex justify-center z-10">
                     <div 
                       className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
                         isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
@@ -213,7 +213,7 @@ const Timeline = () => {
                 {/* Mobile Layout - Single Column */}
                 <div className="md:hidden relative">
                   {/* Center Icon - perfectly positioned on mobile timeline */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 top-0 z-10">
+                    <div className="absolute left-1/2 -translate-x-1/2 -top-6 z-10">
                     <div 
                       className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
                         isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
@@ -228,7 +228,7 @@ const Timeline = () => {
                   </div>
                   
                   {/* Content card - full width on mobile */}
-                  <div className="mx-4 pt-16">
+                  <div className="mx-4 pt-12">
                     <div 
                       className={`glass-effect p-5 rounded-lg shadow-lg transition-all duration-500 timeline-card w-full ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'

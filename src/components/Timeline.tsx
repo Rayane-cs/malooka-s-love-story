@@ -76,7 +76,7 @@ const Timeline = () => {
       return observer;
     });
 
-    // Enhanced timeline animation observer for mobile
+    // Mobile timeline animation observer
     const timelineObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -86,7 +86,6 @@ const Timeline = () => {
             const elementTop = rect.top;
             const elementHeight = rect.height;
             
-            // Calculate progress based on scroll position
             let progress = 0;
             if (elementTop < windowHeight) {
               const visibleHeight = Math.min(windowHeight - Math.max(elementTop, 0), elementHeight);
@@ -141,7 +140,7 @@ const Timeline = () => {
                 ref={el => eventRefs.current[index] = el}
                 className="relative mb-12 md:mb-16"
               >
-                {/* Desktop Layout */}
+                {/* Desktop Layout - Original Alternating Design */}
                 <div className="hidden md:flex items-center">
                   {/* Left card (even indexes) */}
                   {isEven && (
@@ -211,7 +210,7 @@ const Timeline = () => {
                   {!isEven && <div className="w-5/12"></div>}
                 </div>
                 
-                {/* Mobile Layout */}
+                {/* Mobile Layout - Single Column */}
                 <div className="md:hidden relative">
                   {/* Center Icon - perfectly positioned on mobile timeline */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 top-0 z-10">
@@ -228,23 +227,23 @@ const Timeline = () => {
                     </div>
                   </div>
                   
-                  {/* Content card with proper spacing */}
-                  <div className="pl-16 pt-2">
+                  {/* Content card - full width on mobile */}
+                  <div className="mx-4 pt-16">
                     <div 
-                      className={`glass-effect p-4 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                      className={`glass-effect p-5 rounded-lg shadow-lg transition-all duration-500 timeline-card w-full ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                       }`}
                       style={{ 
                         transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                       }}
                     >
-                      <div className="font-dancing text-base text-malika-blue mb-2 transition-colors duration-300">
+                      <div className="font-dancing text-base text-malika-blue mb-2 transition-colors duration-300 text-center">
                         {event.date}
                       </div>
-                      <h3 className="font-playfair text-lg font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                      <h3 className="font-playfair text-lg font-semibold text-malika-dark mb-3 transition-colors duration-300 leading-tight text-center">
                         {event.title}
                       </h3>
-                      <p className="font-playfair text-sm text-malika-gray transition-colors duration-300 leading-relaxed">
+                      <p className="font-playfair text-sm text-malika-gray transition-colors duration-300 leading-relaxed text-center">
                         {event.description}
                       </p>
                     </div>

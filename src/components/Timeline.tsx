@@ -14,7 +14,7 @@ const timelineEvents = [
   {
     date: "Oct 29, 2023",
     title: "Our First Meeting",
-    description: "We met at philosophy class hhh.",
+    description: "We met at philosophy class hhhh.",
     icon: Star,
     color: "malika-blue",
     bgColor: "#F1C87C"

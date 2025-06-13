@@ -90,7 +90,7 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
             <div className="flex items-center justify-center space-x-3 mb-4">
               <Gift className="w-8 h-8 text-malika-gold animate-heartbeat" />
               <h2 className="font-playfair text-4xl md:text-5xl font-bold bg-gradient-to-r from-malika-gold to-malika-light-gold bg-clip-text text-transparent">
-                Unlock Your Surprise 🎁
+               
               </h2>
               <Heart className="w-8 h-8 text-malika-accent-purple animate-heartbeat" />
             </div>
@@ -159,12 +159,11 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
         <div className="glass-effect p-8 rounded-lg shadow-xl border border-malika-gold/30">
           <Gift className="w-16 h-16 text-malika-gold mx-auto mb-4 animate-heartbeat" />
           <h2 className="font-playfair text-3xl font-bold text-malika-dark mb-6">
-            🎉 Surprise Unlocked! 🎉
+            
           </h2>
           
           <div className="space-y-6">
             <p className="font-crimson text-xl text-malika-ocean italic">
-              I recorded something special just for you...
             </p>
             
             <div className="bg-malika-light-blue/30 p-6 rounded-lg border border-malika-accent-purple/30">
@@ -177,12 +176,12 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
                   {isPlaying ? (
                     <>
                       <Pause className="w-5 h-5" />
-                      <span className="font-crimson">Pause</span>
+                      <span className="font-crimson"></span>
                     </>
                   ) : (
                     <>
                       <Play className="w-5 h-5" />
-                      <span className="font-crimson">Play My Voice Message</span>
+                      <span className="font-crimson"></span>
                     </>
                   )}
                 </button>
@@ -192,7 +191,7 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
                 <div className="mt-4">
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-2 h-2 bg-malika-gold rounded-full animate-pulse"></div>
-                    <span className="font-crimson text-malika-ocean">Playing your special song...</span>
+                    <span className="font-crimson text-malika-ocean"></span>
                     <div className="w-2 h-2 bg-malika-gold rounded-full animate-pulse"></div>
                   </div>
                 </div>
@@ -200,16 +199,11 @@ const VoiceSurprise: React.FC<VoiceSurpriseProps> = ({ onSolved }) => {
             </div>
             
             <p className="font-dancing text-lg text-malika-bright-blue">
-              Happy Birthday, my beautiful Malika! 💙🎂
             </p>
           </div>
           
           {/* Hidden audio element - replace with actual voice recording */}
-          <audio
-            ref={audioRef}
-            preload="metadata"
-            src="/voice-recording.mp3"
-          />
+          
         </div>
       </div>
     </section>

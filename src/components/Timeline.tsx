@@ -6,7 +6,7 @@ const timelineEvents = [
   {
     date: "Jan 15, 2022",
     title: "Love at First Sight",
-    description: "The first time I saw you — I instantly fell in love.",
+    description: "The first time i saw you — I instantly fell in love.",
     icon: Heart,
     color: "malika-ocean",
     bgColor: "#AECFE8"

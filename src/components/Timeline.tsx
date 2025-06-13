@@ -4,7 +4,7 @@ import { Calendar, Heart, Star, Gift } from 'lucide-react';
 
 const timelineEvents = [
   {
-    date: "Jan 15, 22",
+    date: "Jan 15, 2022",
     title: "Love at First Sight",
     description: "The first time I saw you — I instantly fell in love.",
     icon: Heart,

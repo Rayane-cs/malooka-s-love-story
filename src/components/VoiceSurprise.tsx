@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Gift, Heart, Play, Pause, Volume2 } from 'lucide-react';
 

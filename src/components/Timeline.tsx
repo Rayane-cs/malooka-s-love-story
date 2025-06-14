@@ -140,80 +140,82 @@ const Timeline = () => {
                 ref={el => eventRefs.current[index] = el}
                 className="relative mb-12 md:mb-16"
               >
-                {/* Desktop Layout - Original Alternating Design */}
-                <div className="hidden md:flex items-center">
-                  {/* Left card (even indexes) */}
-                  {isEven && (
-                    <div className="w-5/12 text-right pr-8">
+                {/* Desktop Layout - Proper Alternating Design */}
+                <div className="hidden md:block">
+                  <div className="relative flex items-center justify-between">
+                    {/* Left side content */}
+                    <div className="w-5/12">
+                      {isEven && (
+                        <div 
+                          className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl timeline-card ${
+                            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                          }`}
+                          style={{ 
+                            transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                          }}
+                        >
+                          <div className="text-right">
+                            <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                              {event.date}
+                            </div>
+                            <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                              {event.title}
+                            </h3>
+                            <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                              {event.description}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Center Icon */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
                       <div 
-                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl timeline-card ${
-                          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
+                          isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
                         }`}
                         style={{ 
+                          background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
                           transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                         }}
                       >
-                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
-                          {event.date}
-                        </div>
-                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
-                          {event.title}
-                        </h3>
-                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
-                          {event.description}
-                        </p>
+                        <IconComponent className="w-7 h-7 text-white drop-shadow-sm" />
                       </div>
                     </div>
-                  )}
-                  
-                  {/* Center Icon - perfectly positioned */}
-                  <div className="relative w-[8.333%] flex justify-center z-10">
-                    <div 
-                      className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
-                        isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
-                      }`}
-                      style={{ 
-                        background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
-                        transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
-                      }}
-                    >
-                      <IconComponent className="w-7 h-7 text-white drop-shadow-sm" />
+                    
+                    {/* Right side content */}
+                    <div className="w-5/12">
+                      {!isEven && (
+                        <div 
+                          className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl timeline-card ${
+                            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                          }`}
+                          style={{ 
+                            transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
+                          }}
+                        >
+                          <div className="text-left">
+                            <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                              {event.date}
+                            </div>
+                            <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                              {event.title}
+                            </h3>
+                            <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                              {event.description}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                  
-                  {/* Right card (odd indexes) */}
-                  {!isEven && (
-                    <div className="w-5/12 text-left pl-8">
-                      <div 
-                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
-                          isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
-                        }`}
-                        style={{ 
-                          transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
-                        }}
-                      >
-                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
-                          {event.date}
-                        </div>
-                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
-                          {event.title}
-                        </h3>
-                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
-                          {event.description}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Empty space for alternating layout */}
-                  {isEven && <div className="w-5/12"></div>}
-                  {!isEven && <div className="w-5/12"></div>}
                 </div>
                 
                 {/* Mobile Layout - Single Column */}
                 <div className="md:hidden relative">
                   {/* Center Icon - perfectly positioned on mobile timeline */}
-                    <div className="absolute left-1/2 -translate-x-1/2 -top-6 z-10">
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-6 z-10">
                     <div 
                       className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
                         isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'

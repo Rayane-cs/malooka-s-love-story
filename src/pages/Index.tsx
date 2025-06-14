@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import Hero from '../components/Hero';
 import Timeline from '../components/Timeline';
@@ -102,7 +103,10 @@ const Index = () => {
 
       {/* Mute/Unmute Button */}
       <button
-        
+        onClick={toggleSound}
+        className={`fixed top-4 right-4 z-50 bg-malika-blue/20 hover:bg-malika-blue/30 backdrop-blur-sm border border-malika-blue/30 rounded-full p-3 transition-all duration-300 ${
+          isClicked ? 'scale-95' : 'scale-100'
+        } hover:scale-105`}
       >
         {isMuted ? (
           // Muted Icon
@@ -124,14 +128,7 @@ const Index = () => {
 
       {showConfetti && <ConfettiAnimation />}
       <Hero onCelebrate={triggerConfetti} />
-
-      {/* Timeline aligned right */}
-      <div className="flex justify-end">
-        <div className="w-fit text-right">
-          <Timeline />
-        </div>
-      </div>
-
+      <Timeline />
       <MessageSection />
       <CountdownTimer />
       <Gallery />

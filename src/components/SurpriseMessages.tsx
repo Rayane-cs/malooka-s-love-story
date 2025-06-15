@@ -17,12 +17,6 @@ const SurpriseMessages: React.FC<SurpriseMessagesProps> = ({ onOpen }) => {
       content: 'I love your beautiful smile that lights up every room, your kind heart that makes everyone feel special, and the way you make ordinary moments feel magical. You are my sunshine! ☀️💖'
     },
     {
-      icon: Star,
-      color: 'malika-purple',
-      title: 'My Favorite Memory',
-      content: 'The moment you laughed at my silly joke during our philosophy presentation. That sound became my favorite melody, and I knew I wanted to hear it for the rest of my life. 🎭✨'
-    },
-    {
       icon: Sparkles,
       color: 'malika-gold',
       title: 'Dreams for Us',

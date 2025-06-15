@@ -4,17 +4,17 @@ import { Calendar, Heart, Star, Gift } from 'lucide-react';
 
 const timelineEvents = [
   {
-    date: "Jan 15, 2022",
+    date: "Jan 15, 2023",
     title: "Love at First Sight",
-    description: "The first time i saw you — I instantly fell in love.",
+    description: "The first time I saw you — I instantly fell in love.",
     icon: Heart,
     color: "malika-ocean",
     bgColor: "#AECFE8"
   },
   {
     date: "Oct 29, 2023",
-    title: "Our First Meeting",
-    description: "We met at philosophy class hhhh.",
+    title: "Our First Collaboration",
+    description: "We met and presented a philosophy class together.",
     icon: Star,
     color: "malika-blue",
     bgColor: "#F1C87C"
@@ -117,12 +117,12 @@ const Timeline = () => {
         
         <div ref={timelineRef} className="relative">
           {/* Desktop Timeline line - perfectly centered */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-400 to-blue-600 hidden md:block z-0"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue hidden md:block z-0"></div>
           
           {/* Mobile Timeline - centered and animated */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 h-full bg-gradient-to-b from-blue-400/20 to-blue-600/20 md:hidden z-0"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 h-full bg-gradient-to-b from-malika-blue/20 to-malika-bright-blue/20 md:hidden z-0"></div>
           <div 
-            className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-blue-400 to-blue-600 md:hidden transition-all duration-1000 ease-out z-0"
+            className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue md:hidden transition-all duration-1000 ease-out z-0"
             style={{ 
               height: `${timelineProgress * 100}%`,
               boxShadow: '0 0 12px rgba(60, 145, 196, 0.6), 0 0 24px rgba(60, 145, 196, 0.3)'
@@ -140,39 +140,37 @@ const Timeline = () => {
                 ref={el => eventRefs.current[index] = el}
                 className="relative mb-12 md:mb-16"
               >
-                {/* Desktop Layout - Proper Alternating Design */}
-                <div className="hidden md:flex md:items-center md:justify-between">
-                  {/* Left side content */}
-                  <div className="w-5/12">
-                    {isEven && (
+                {/* Desktop Layout - Original Alternating Design */}
+                <div className="hidden md:flex items-center">
+                  {/* Left card (even indexes) */}
+                  {isEven && (
+                    <div className="w-5/12 text-right pr-8">
                       <div 
-                        className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl border border-blue-200/30 ${
+                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
                           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                         }`}
                         style={{ 
                           transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                         }}
                       >
-                        <div className="text-right">
-                          <div className="font-dancing text-lg text-blue-600 mb-2 transition-colors duration-300">
-                            {event.date}
-                          </div>
-                          <h3 className="font-playfair text-xl font-semibold text-gray-800 mb-2 transition-colors duration-300 leading-tight">
-                            {event.title}
-                          </h3>
-                          <p className="font-playfair text-base text-gray-600 transition-colors duration-300 leading-relaxed">
-                            {event.description}
-                          </p>
+                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                          {event.date}
                         </div>
+                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                          {event.title}
+                        </h3>
+                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                          {event.description}
+                        </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   
-                  {/* Center Icon */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                  {/* Center Icon - perfectly positioned */}
+                  <div className="relative w-2/12 flex justify-center z-10">
                     <div 
                       className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
-                        isVisible ? 'animate-pulse scale-100' : 'scale-90 opacity-70'
+                        isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
                       }`}
                       style={{ 
                         background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
@@ -183,40 +181,42 @@ const Timeline = () => {
                     </div>
                   </div>
                   
-                  {/* Right side content */}
-                  <div className="w-5/12">
-                    {!isEven && (
+                  {/* Right card (odd indexes) */}
+                  {!isEven && (
+                    <div className="w-5/12 text-left pl-8">
                       <div 
-                        className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.03] hover:shadow-xl border border-blue-200/30 ${
+                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
                           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                         }`}
                         style={{ 
                           transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                         }}
                       >
-                        <div className="text-left">
-                          <div className="font-dancing text-lg text-blue-600 mb-2 transition-colors duration-300">
-                            {event.date}
-                          </div>
-                          <h3 className="font-playfair text-xl font-semibold text-gray-800 mb-2 transition-colors duration-300 leading-tight">
-                            {event.title}
-                          </h3>
-                          <p className="font-playfair text-base text-gray-600 transition-colors duration-300 leading-relaxed">
-                            {event.description}
-                          </p>
+                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                          {event.date}
                         </div>
+                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                          {event.title}
+                        </h3>
+                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                          {event.description}
+                        </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
+                  
+                  {/* Empty space for alternating layout */}
+                  {isEven && <div className="w-5/12"></div>}
+                  {!isEven && <div className="w-5/12"></div>}
                 </div>
                 
                 {/* Mobile Layout - Single Column */}
                 <div className="md:hidden relative">
                   {/* Center Icon - perfectly positioned on mobile timeline */}
-                  <div className="absolute left-1/2 -translate-x-1/2 -top-6 z-10">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-0 z-10">
                     <div 
                       className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
-                        isVisible ? 'animate-pulse scale-100' : 'scale-90 opacity-70'
+                        isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
                       }`}
                       style={{ 
                         background: `linear-gradient(135deg, ${event.bgColor}, ${event.bgColor}dd)`,
@@ -228,22 +228,22 @@ const Timeline = () => {
                   </div>
                   
                   {/* Content card - full width on mobile */}
-                  <div className="mx-4 pt-12">
+                  <div className="mx-4 pt-16">
                     <div 
-                      className={`bg-white/80 backdrop-blur-sm p-5 rounded-lg shadow-lg transition-all duration-500 w-full border border-blue-200/30 ${
+                      className={`glass-effect p-5 rounded-lg shadow-lg transition-all duration-500 timeline-card w-full ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                       }`}
                       style={{ 
                         transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                       }}
                     >
-                      <div className="font-dancing text-base text-blue-600 mb-2 transition-colors duration-300 text-center">
+                      <div className="font-dancing text-base text-malika-blue mb-2 transition-colors duration-300 text-center">
                         {event.date}
                       </div>
-                      <h3 className="font-playfair text-lg font-semibold text-gray-800 mb-3 transition-colors duration-300 leading-tight text-center">
+                      <h3 className="font-playfair text-lg font-semibold text-malika-dark mb-3 transition-colors duration-300 leading-tight text-center">
                         {event.title}
                       </h3>
-                      <p className="font-playfair text-sm text-gray-600 transition-colors duration-300 leading-relaxed text-center">
+                      <p className="font-playfair text-sm text-malika-gray transition-colors duration-300 leading-relaxed text-center">
                         {event.description}
                       </p>
                     </div>

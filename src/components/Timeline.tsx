@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, Heart, Star, Gift } from 'lucide-react';
 
@@ -109,17 +108,17 @@ const Timeline = () => {
   }, []);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-transparent to-malika-light-blue/30">
+    <section className="py-14 md:py-20 px-2 md:px-4 bg-gradient-to-b from-transparent to-malika-light-blue/30">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-playfair text-4xl md:text-5xl font-bold text-center mb-16 text-malika-dark">
+        <h2 className="font-playfair text-3xl md:text-5xl font-bold text-center mb-10 md:mb-16 text-malika-dark">
           Our Beautiful Journey
         </h2>
         
         <div ref={timelineRef} className="relative">
-          {/* Desktop Timeline line - perfectly centered */}
+          {/* Desktop Timeline line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue hidden md:block z-0"></div>
           
-          {/* Mobile Timeline - centered and animated */}
+          {/* Mobile Timeline */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 h-full bg-gradient-to-b from-malika-blue/20 to-malika-bright-blue/20 md:hidden z-0"></div>
           <div 
             className="absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-malika-blue to-malika-bright-blue md:hidden transition-all duration-1000 ease-out z-0"
@@ -138,38 +137,38 @@ const Timeline = () => {
               <div 
                 key={index} 
                 ref={el => eventRefs.current[index] = el}
-                className="relative mb-12 md:mb-16"
+                className="relative mb-8 md:mb-16"
               >
-                {/* Desktop Layout - Original Alternating Design */}
+                {/* Desktop Layout */}
                 <div className="hidden md:flex items-center">
                   {/* Left card (even indexes) */}
                   {isEven && (
-                    <div className="w-5/12 text-right pr-8">
+                    <div className="w-5/12 text-right pr-2 md:pr-8">
                       <div 
-                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                        className={`glass-effect p-4 md:p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
                           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                         }`}
                         style={{ 
                           transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                         }}
                       >
-                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                        <div className="font-dancing text-base md:text-lg text-malika-blue mb-2 transition-colors duration-300">
                           {event.date}
                         </div>
-                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                        <h3 className="font-playfair text-lg md:text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
                           {event.title}
                         </h3>
-                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                        <p className="font-playfair text-sm md:text-base text-malika-gray transition-colors duration-300 leading-relaxed">
                           {event.description}
                         </p>
                       </div>
                     </div>
                   )}
                   
-                  {/* Center Icon - perfectly positioned */}
+                  {/* Center Icon */}
                   <div className="relative w-2/12 flex justify-center z-10">
                     <div 
-                      className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
+                      className={`w-10 h-10 md:w-14 md:h-14 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
                         isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
                       }`}
                       style={{ 
@@ -177,45 +176,43 @@ const Timeline = () => {
                         transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                       }}
                     >
-                      <IconComponent className="w-7 h-7 text-white drop-shadow-sm" />
+                      <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-white drop-shadow-sm" />
                     </div>
                   </div>
                   
                   {/* Right card (odd indexes) */}
                   {!isEven && (
-                    <div className="w-5/12 text-left pl-8">
+                    <div className="w-5/12 text-left pl-2 md:pl-8">
                       <div 
-                        className={`glass-effect p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
+                        className={`glass-effect p-4 md:p-6 rounded-lg shadow-lg transition-all duration-500 timeline-card ${
                           isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                         }`}
                         style={{ 
                           transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                         }}
                       >
-                        <div className="font-dancing text-lg text-malika-blue mb-2 transition-colors duration-300">
+                        <div className="font-dancing text-base md:text-lg text-malika-blue mb-2 transition-colors duration-300">
                           {event.date}
                         </div>
-                        <h3 className="font-playfair text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
+                        <h3 className="font-playfair text-lg md:text-xl font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight">
                           {event.title}
                         </h3>
-                        <p className="font-playfair text-base text-malika-gray transition-colors duration-300 leading-relaxed">
+                        <p className="font-playfair text-sm md:text-base text-malika-gray transition-colors duration-300 leading-relaxed">
                           {event.description}
                         </p>
                       </div>
                     </div>
                   )}
-                  
-                  {/* Empty space for alternating layout */}
                   {isEven && <div className="w-5/12"></div>}
                   {!isEven && <div className="w-5/12"></div>}
                 </div>
                 
                 {/* Mobile Layout - Single Column */}
                 <div className="md:hidden relative">
-                  {/* Center Icon - perfectly positioned on mobile timeline */}
+                  {/* Center Icon */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 top-0 z-10">
                     <div 
-                      className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
+                      className={`w-10 h-10 rounded-full shadow-lg flex items-center justify-center border-4 border-white transition-all duration-500 ${
                         isVisible ? 'animate-pulse-gentle scale-100' : 'scale-90 opacity-70'
                       }`}
                       style={{ 
@@ -227,23 +224,23 @@ const Timeline = () => {
                     </div>
                   </div>
                   
-                  {/* Content card - full width on mobile */}
-                  <div className="mx-4 pt-16">
+                  {/* Content card */}
+                  <div className="mx-1 pt-12">
                     <div 
-                      className={`glass-effect p-5 rounded-lg shadow-lg transition-all duration-500 timeline-card w-full ${
+                      className={`glass-effect p-4 rounded-lg shadow-lg transition-all duration-500 timeline-card w-full ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                       }`}
                       style={{ 
                         transitionDelay: isVisible ? `${index * 0.1}s` : '0s'
                       }}
                     >
-                      <div className="font-dancing text-base text-malika-blue mb-2 transition-colors duration-300 text-center">
+                      <div className="font-dancing text-sm text-malika-blue mb-1 transition-colors duration-300 text-center">
                         {event.date}
                       </div>
-                      <h3 className="font-playfair text-lg font-semibold text-malika-dark mb-3 transition-colors duration-300 leading-tight text-center">
+                      <h3 className="font-playfair text-base font-semibold text-malika-dark mb-2 transition-colors duration-300 leading-tight text-center">
                         {event.title}
                       </h3>
-                      <p className="font-playfair text-sm text-malika-gray transition-colors duration-300 leading-relaxed text-center">
+                      <p className="font-playfair text-xs text-malika-gray transition-colors duration-300 leading-relaxed text-center">
                         {event.description}
                       </p>
                     </div>

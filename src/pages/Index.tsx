@@ -6,9 +6,9 @@ import MessageSection from '../components/MessageSection';
 import Gallery from '../components/Gallery';
 import CountdownTimer from '../components/CountdownTimer';
 import Puzzle from '../components/Puzzle';
-import VoiceSurprise from '../components/VoiceSurprise';
+// import VoiceSurprise from '../components/VoiceSurprise'; // Removed as per request
 import ConfettiAnimation from '../components/ConfettiAnimation';
-import BackgroundMusic from '../components/BackgroundMusic';
+// import BackgroundMusic from '../components/BackgroundMusic'; // Removed as per request
 import SurpriseMessages from '../components/SurpriseMessages';
 
 const Index = () => {
@@ -51,7 +51,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <BackgroundMusic />
+      {/* <BackgroundMusic /> */}
       {showConfetti && <ConfettiAnimation />}
       
       <Hero onCelebrate={triggerConfetti} />
@@ -60,7 +60,7 @@ const Index = () => {
       <CountdownTimer />
       <Gallery />
       <Puzzle onSolved={triggerConfetti} />
-      <VoiceSurprise onSolved={triggerConfetti} />
+      {/* <VoiceSurprise onSolved={triggerConfetti} /> */}
       <SurpriseMessages onOpen={triggerConfetti} />
       
       {/* Floating hearts with blue theme and gold accents */}
